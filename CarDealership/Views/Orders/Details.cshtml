@@ -1,0 +1,97 @@
+﻿@model CarDealership.Models.Owner
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Owner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().Cars.First().Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.First().Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().Manufacture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.First().Manufacture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.First().Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.First().Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().Run)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.First().Run)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().AddInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cars.First().AddInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cars.First().Pic)
+        </dt>
+
+        <dd>
+            <img src="@Model.Cars.First().Base64Image" alt="image" style="width:200px; height:200px;" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,144 @@
+﻿@model CarDealership.Models.Owner
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="creditCardForm">
+    <div class="heading">
+        <h1>Confirm Purchase</h1>
+    </div>
+    
+    <div>
+        <h4>Owner</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <h4>Car</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Model
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cars.First().Model)
+            </dd>
+
+            <dt>
+              Manufacture
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cars.First().Manufacture)
+            </dd>
+
+            <dt>
+                Year
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cars.First().Year)
+            </dd>
+
+            <dt>
+               Price
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cars.First().Price)
+            </dd>
+
+            <dt>
+               Run
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cars.First().Run)
+            </dd>
+
+            <dt>
+               AddInfo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cars.First().AddInfo)
+            </dd>
+
+            <dt>
+               Pic
+            </dt>
+
+            <dd>
+                <img src="@Model.Cars.First().Base64Image" alt="image" style="width:200px; height:200px;" />
+            </dd>
+
+        </dl>
+    </div>
+    <div class="payment">
+        <form>
+            <div class="form-group owner">
+                <label for="owner">Credit</label>
+                <input type="text" class="form-control" id="owner">
+            </div>
+            <div class="form-group CVV">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv">
+            </div>
+            <div class="form-group" id="card-number-field">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber">
+            </div>
+            <div class="form-group" id="expiration-date">
+                <label>Expiration Date</label>
+                <select>
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select>
+                    <option value="16"> 2016</option>
+                    <option value="17"> 2017</option>
+                    <option value="18"> 2018</option>
+                    <option value="19"> 2019</option>
+                    <option value="20"> 2020</option>
+                    <option value="21"> 2021</option>
+                </select>
+            </div>
+            <div class="form-group" id="pay-now">
+                <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>

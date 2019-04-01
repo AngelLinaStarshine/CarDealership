@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CarDealership.Models.Car>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Car Dealership</h1>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <button onclick="showDetails(@item.Id)">Details</button>
+                @* @Html.ActionLink("Details", "Details", "Cars", new {id = item.Id}, null)*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="carDetails" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Car Details</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                            <td id="id"></td>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Model)
+                        </th>
+                        <td id="model"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Manufacture)
+                        </th>
+                        <td id="manifacturer"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Year)
+                        </th>
+                        <td id="year"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <td id="price"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Run)
+                        </th>
+                        <td id="run"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AddInfo)
+                        </th>
+                        <td id="info"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Pic)
+                        </th>
+                        <td id="pic"> </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $('#carDetails').modal({ show: false });
+
+    //Ajax
+    function showDetails(id) {
+        $.get("../api/CarsApi/" + id, function (data) {
+            $('#carDetails').modal('show');
+            $('#id').text(data.Id);
+            $('#model').text(data.Model);
+            $('#manifacturer').text(data.Manufacture);
+            $('#year').text(data.Year);
+            $('#price').text(data.Price);
+            $('#run').text(data.Run);
+            $('#info').text(data.AddInfo);
+            $('#pic').html( '<img src="'+data.Base64Image+'" alt="image" style="width:200px; height:200px;"/>');
+        });
+    }
+</script>
+
